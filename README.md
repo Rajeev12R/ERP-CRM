@@ -96,6 +96,44 @@ Environment variables are managed using `.env` files. Both `client` and `server`
 
 ---
 
+## 🛠️ API Documentation
+
+Below is the list of available REST APIs in the application, organized by module. All protected routes require a valid JWT cookie.
+
+### Authentication (`/api/auth`)
+*   `POST /api/auth/register` - Register a new user
+*   `POST /api/auth/login` - Login a user and receive a JWT cookie
+*   `POST /api/auth/logout` - Logout a user (clears cookie)
+*   `POST /api/auth/users` - Create a new user account *(Role: Admin)*
+
+### Customers (`/api/customers`)
+*   `POST /api/customers` - Add a new customer *(Role: Admin, Sales)*
+*   `GET /api/customers` - Get a list of all customers *(Role: Admin, Sales)*
+*   `GET /api/customers/:id` - Get details of a specific customer *(Role: Admin, Sales)*
+*   `PUT /api/customers/:id` - Update a customer's details *(Role: Admin, Sales)*
+*   `POST /api/customers/:id/followups` - Add a follow-up note to a customer *(Role: Admin, Sales)*
+
+### Products (`/api/products`)
+*   `POST /api/products` - Add a new product to the catalog *(Role: Admin, Warehouse)*
+*   `GET /api/products` - Get a list of all products *(Role: Admin, Sales, Warehouse)*
+*   `GET /api/products/:id` - Get details of a specific product *(Role: Admin, Sales, Warehouse)*
+*   `PUT /api/products/:id` - Update a product's details *(Role: Admin, Warehouse)*
+
+### Stock & Inventory (`/api/stock`)
+*   `POST /api/stock/in` - Add stock for a product *(Role: Admin, Warehouse)*
+*   `POST /api/stock/out` - Remove stock for a product *(Role: Admin, Warehouse)*
+*   `GET /api/stock/movements` - View stock movement history logs *(Role: Admin, Warehouse)*
+*   `GET /api/stock/low-stock` - Get a list of products that are below minimum stock level *(Role: Admin, Warehouse)*
+
+### Sales Challans (`/api/challans`)
+*   `POST /api/challans` - Create a new sales challan (Draft or Confirmed) *(Role: Admin, Sales)*
+*   `GET /api/challans` - Get a list of all challans *(Role: Admin, Sales, Warehouse, Accounts)*
+*   `GET /api/challans/:id` - Get details of a specific challan *(Role: Admin, Sales, Warehouse, Accounts)*
+*   `PUT /api/challans/:id/confirm` - Confirm a draft challan (reduces stock) *(Role: Admin, Sales)*
+*   `PUT /api/challans/:id/cancel` - Cancel a challan *(Role: Admin, Sales)*
+
+---
+
 ## Test Login Credentials
 
 Use the following credentials to test different role-based workflows in the application:
