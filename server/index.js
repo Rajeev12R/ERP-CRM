@@ -14,7 +14,11 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: [
+        'http://localhost:5173', 
+        'https://erp-crm-pi.vercel.app', 
+        process.env.CLIENT_URL
+    ].filter(Boolean),
     credentials: true
 }));
 
